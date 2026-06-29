@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="160" viewBox="0 0 720 160" fill="none">
+  <rect width="720" height="160" fill="#F5F2EB"/>
+  <rect x="42" y="42" width="76" height="76" fill="url(#g)"/>
+  <path d="M61 78.5L95.5 62L101 73.5L66.5 90L61 78.5Z" fill="#F5F2EB"/>
+  <path d="M65.5 83H77.5V108H65.5V83Z" fill="#F5F2EB"/>
+  <path d="M94 83H106V108H94V83Z" fill="#F5F2EB" fill-opacity=".86"/>
+  <text x="144" y="95" fill="#171717" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="800" letter-spacing="-2.4">Bauwerk</text>
+  <text x="330" y="95" fill="#A98443" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="800" letter-spacing="-2.4">Meister</text>
+  <defs>
+    <linearGradient id="g" x1="42" y1="42" x2="118" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C3A15C"/>
+      <stop offset="1" stop-color="#6F5428"/>
+    </linearGradient>
+  </defs>
+</svg>
