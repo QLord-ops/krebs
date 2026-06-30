@@ -51,7 +51,7 @@ const projects = [
   {
     title: "Überlandleitung Billeben",
     category: "Kanalbau",
-    image: "/krebs/images/reference-pipe.jpg",
+    image: "/krebs/images/focus-kanal-reference.png",
   },
   {
     title: "Feuerwehrzufahrt Göttingen-Nord",
@@ -82,13 +82,19 @@ const values = [
   ["Saubere Ausführung", "Termingerechte Arbeit und fachgerechte Wiederherstellung."],
 ];
 
+const careerProofs = [
+  ["Ein Team, das hält.", "Erfahrene Kollegen, kurze Wege und gegenseitiger Respekt."],
+  ["Moderne Technik.", "Leistungsstarke Maschinen und digitale Abläufe auf der Baustelle."],
+  ["Sichere Zukunft.", "Regionale Projekte, feste Strukturen und verlässliche Perspektiven."],
+];
+
 const roles = [
-  "Polier / Vorarbeiter",
-  "Baggerfahrer / Maschinist",
-  "Facharbeiter Tief- & Straßenbau",
-  "LKW-Fahrer",
-  "Auszubildender Tief- & Straßenbau",
-  "Initiativbewerbung",
+  { title: "Polier / Vorarbeiter", type: "m/w/d", meta: "Vollzeit" },
+  { title: "Baggerfahrer / Maschinist", type: "m/w/d", meta: "Vollzeit" },
+  { title: "Facharbeiter Tief- & Straßenbau", type: "m/w/d", meta: "Vollzeit" },
+  { title: "LKW-Fahrer", type: "m/w/d", meta: "Vollzeit" },
+  { title: "Auszubildender Tief- & Straßenbau", type: "m/w/d", meta: "Ausbildung" },
+  { title: "Initiativbewerbung", type: "", meta: "Vollzeit / Teilzeit" },
 ];
 
 export default function Home() {
@@ -188,6 +194,10 @@ export default function Home() {
           <div className="focus-copy">
             <p className="eyebrow red">Projekt im Fokus</p>
             <h2 id="focus-title">Kanal- und Rohrleitungsbau im Bestand</h2>
+            <p className="focus-lead">
+              Präzise geplant, sauber ausgeführt und mit minimaler Beeinträchtigung
+              für Anwohner und Infrastruktur.
+            </p>
             <dl>
               <div>
                 <dt>Leistung</dt>
@@ -205,11 +215,11 @@ export default function Home() {
             <a className="button button-red" href="#kontakt">Projekt im Detail anfragen</a>
           </div>
           <div className="focus-media">
-            <Image src="/krebs/images/reference-pipe.jpg" alt="Rohrleitungsarbeiten auf einer Baustelle" width={1200} height={900} />
+            <Image className="focus-main-image" src="/krebs/images/focus-kanal-reference.png" alt="Kanalbau und Rohrleitungsgraben im Bestand" width={1200} height={900} />
             <div className="focus-thumbs" aria-hidden="true">
               <Image src="/krebs/images/hero-tiefbau.jpg" alt="" width={500} height={360} />
               <Image src="/krebs/images/site-roadworks.jpg" alt="" width={500} height={360} />
-              <Image src="/krebs/images/reference-paving.jpg" alt="" width={500} height={360} />
+              <Image src="/krebs/images/site-excavation.jpg" alt="" width={500} height={360} />
             </div>
           </div>
           <div className="stats-row">
@@ -263,7 +273,7 @@ export default function Home() {
             <a className="button button-red" href="#kontakt">Mehr über uns</a>
           </div>
           <div className="company-image">
-            <Image src="/krebs/images/career-team.jpg" alt="Bauarbeiter und Bagger auf einer Baustelle" width={1400} height={760} />
+            <Image src="/krebs/images/company-reference-team.png" alt="Krebs Team mit Bagger auf einer Baustelle" width={1400} height={760} />
           </div>
           <div className="values-panel">
             <div className="values-intro">
@@ -290,24 +300,42 @@ export default function Home() {
         </section>
 
         <section id="karriere" className="career-section">
-          <div className="career-copy">
-            <p className="eyebrow">Karriere</p>
-            <h2>Draußen arbeiten. Im Team liefern. Abends sehen, was geschafft ist.</h2>
-            <p>
-              Ob Facharbeiter, Maschinist, Polier oder Azubi - bei Krebs arbeitet ein
-              echtes Team mit moderner Technik, festen Abläufen und klaren Aufgaben.
-            </p>
+          <div className="career-shell">
+            <div className="career-copy">
+              <p className="eyebrow red">Karriere</p>
+              <h2>Bau mit uns die Infrastruktur von morgen.</h2>
+              <p>
+                Ob Facharbeiter, Maschinist, Polier oder Azubi - bei Krebs arbeitet ein
+                echtes Team mit moderner Technik, festen Abläufen und klaren Aufgaben.
+              </p>
+              <div className="career-proofs">
+                {careerProofs.map(([title, text]) => (
+                  <div key={title}>
+                    <span className="k-icon small" aria-hidden="true" />
+                    <strong>{title}</strong>
+                    <span>{text}</span>
+                  </div>
+                ))}
+              </div>
+              <a className="button button-red career-cta" href="#kontakt">Jetzt bewerben</a>
+            </div>
+            <div className="career-board">
+              <div className="career-photo">
+                <Image src="/krebs/images/company-reference-team.png" alt="Krebs Team vor Bagger auf einer Baustelle" width={1400} height={820} />
+              </div>
+              <div className="role-grid" aria-label="Offene Positionen">
+                {roles.map((role, index) => (
+                  <a className="role-row" href="#kontakt" key={role.title}>
+                    <span className="role-number">{String(index + 1).padStart(2, "0")}</span>
+                    <strong>{role.title}</strong>
+                    {role.type ? <small>{role.type}</small> : <small aria-hidden="true" />}
+                    <em>{role.meta}</em>
+                    <span className="role-arrow" aria-hidden="true">→</span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
-          <div className="role-grid">
-            {roles.map((role) => (
-              <a href="#kontakt" key={role}>
-                <span className="k-icon small" aria-hidden="true" />
-                {role}
-                <small>Mehr erfahren</small>
-              </a>
-            ))}
-          </div>
-          <a className="button button-red" href="#kontakt">In 60 Sekunden bewerben</a>
         </section>
 
         <section id="kontakt" className="contact-section">
