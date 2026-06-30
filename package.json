@@ -1,7 +1,7 @@
 {
-  "name": "bauwerk-meister",
+  "name": "krebs-tiefbau-redesign",
   "version": "1.0.0",
-  "description": "Premium one-page website for Bauwerk Meister GmbH.",
+  "description": "One-page redesign for Krebs Tief- & Strassenbau GmbH.",
   "private": true,
   "scripts": {
     "dev": "next dev",

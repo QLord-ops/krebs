@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Bauwerk Meister GmbH – Hochwertiger Wohnbau, Gewerbebau & Sanierung",
+  title: "Krebs Tief- & Straßenbau GmbH - Tiefbau, Straßenbau & Kanalbau",
   description:
-    "Premium Bauunternehmen für Wohnbau, Gewerbebau, Sanierung und Projektsteuerung in Deutschland. Klare Planung, saubere Ausführung und transparente Kommunikation.",
+    "Neuer One-Page-Auftritt für Krebs Tief- & Straßenbau mit Leistungen, Referenzen, Karriere und Baustellen-Check.",
 };
 
 export default function RootLayout({

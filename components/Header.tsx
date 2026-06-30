@@ -1,53 +1,44 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
 
 const navItems = [
   { label: "Leistungen", href: "#leistungen" },
-  { label: "Projekte", href: "#projekte" },
-  { label: "Prozess", href: "#prozess" },
-  { label: "Qualität", href: "#qualitaet" },
+  { label: "Projekte", href: "#referenzen" },
+  { label: "Unternehmen", href: "#unternehmen" },
+  { label: "Karriere", href: "#karriere" },
   { label: "Kontakt", href: "#kontakt" },
 ];
 
 export function Header() {
-  const [solid, setSolid] = useState(false);
-  const [hiddenOnHero, setHiddenOnHero] = useState(true);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const hero = document.querySelector<HTMLElement>(".cinematic-hero");
-      const isOverHero = hero ? hero.getBoundingClientRect().bottom > 80 : false;
-
-      setSolid(window.scrollY > 40);
-      setHiddenOnHero(isOverHero);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
+  const [open, setOpen] = useState(false);
 
   return (
-    <header className={`site-header ${solid ? "is-solid" : ""} ${hiddenOnHero ? "is-hidden-on-hero" : ""}`}>
-      <a className="brand" href="#top" aria-label="Bauwerk Meister Startseite">
-        <BrandLogo />
+    <header className="site-header">
+      <a className="brand-link" href="#top" onClick={() => setOpen(false)}>
+        <BrandLogo variant="light" />
       </a>
-      <nav className="desktop-nav" aria-label="Hauptnavigation">
+      <nav className={`main-nav ${open ? "is-open" : ""}`} aria-label="Hauptnavigation">
         {navItems.map((item) => (
-          <a href={item.href} key={item.href}>
+          <a href={item.href} key={item.href} onClick={() => setOpen(false)}>
             {item.label}
           </a>
         ))}
       </nav>
-      <a className="nav-cta" href="#kontakt">
-        Projekt anfragen
-      </a>
+      <a className="phone-link" href="tel:+4936066086080">03606 60 86 08 0</a>
+      <a className="header-cta" href="#kontakt">Projekt anfragen</a>
+      <button
+        className="menu-toggle"
+        type="button"
+        aria-label="Navigation öffnen"
+        aria-expanded={open}
+        onClick={() => setOpen((value) => !value)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
     </header>
   );
 }

@@ -1,88 +1,94 @@
 import Image from "next/image";
 import { BrandLogo } from "@/components/BrandLogo";
-import { CinematicHero } from "@/components/CinematicHero";
 import { ContactForm } from "@/components/ContactForm";
 import { Header } from "@/components/Header";
 
 const services = [
   {
-    title: "Wohnbau",
-    text: "Individuelle Wohnprojekte mit klarer Planung, hochwertiger Ausführung und persönlicher Betreuung.",
-    image: "/images/service-wohnbau.jpg",
-    alt: "Morgendliches Baugrundstück für ein hochwertiges Wohnprojekt",
+    title: "Kanal- & Rohrleitungsbau",
+    image: "/krebs/images/hero-tiefbau.jpg",
+    text: "Neubau und Sanierung von Schmutz-, Regen- und Trinkwasserleitungen inkl. Hausanschlüsse.",
+    bullets: ["Hausanschlüsse", "Regenwasser", "Schmutzwasser", "Trinkwasser", "Fernwärme"],
   },
   {
-    title: "Gewerbebau",
-    text: "Funktionale und repräsentative Gebäude für Unternehmen, Praxen, Büros und Investoren.",
-    image: "/images/service-gewerbebau.jpg",
-    alt: "Architektonische Bauphase eines repräsentativen Gewerbeprojekts",
+    title: "Straßenbau",
+    image: "/krebs/images/site-roadworks.jpg",
+    text: "Gehwege, Zufahrten, Fahrbahnen und Wiederherstellung - dauerhaft belastbar ausgeführt.",
+    bullets: ["Gehwege", "Zufahrten", "Fahrbahnen", "Wiederherstellung", "Erschließung"],
   },
   {
-    title: "Sanierung & Modernisierung",
-    text: "Bestehende Immobilien modernisieren, aufwerten und technisch auf den neuesten Stand bringen.",
-    image: "/images/service-sanierung.jpg",
-    alt: "Modernisierte Gebäudestruktur mit ruhiger Architektur",
+    title: "Erdbau",
+    image: "/krebs/images/site-excavation.jpg",
+    text: "Aushub, Baugruben, Planum und Verdichtung - präzise vorbereitet und termingerecht umgesetzt.",
+    bullets: ["Aushub", "Baugruben", "Planum", "Verdichtung", "Geländeprofilierung"],
   },
   {
-    title: "Projektsteuerung",
-    text: "Strukturierte Koordination von Planung, Gewerken, Zeitplan, Budget und Kommunikation.",
-    image: "/images/service-projektsteuerung.jpg",
-    alt: "Abgestimmte Bauplanung mit klarer architektonischer Struktur",
+    title: "Pflasterbau",
+    image: "/krebs/images/reference-paving.jpg",
+    text: "Einfahrten, Höfe, Stellplätze und Wege - funktional, langlebig und optisch hochwertig.",
+    bullets: ["Einfahrten", "Höfe", "Gehwege", "Stellplätze", "Naturstein & Betonpflaster"],
+  },
+  {
+    title: "Außenanlagen",
+    image: "/krebs/images/reference-bridge.jpg",
+    text: "Zufahrten, Terrassen, Entwässerung und Gestaltung - Ihr Außenbereich in besten Händen.",
+    bullets: ["Zufahrten", "Stellplätze", "Terrassen", "Entwässerung", "Stützmauern"],
+  },
+  {
+    title: "Sanierung & Umbau",
+    image: "/krebs/images/hero-cat.jpg",
+    text: "Drainage, Abdichtung, Reparaturen und Wiederherstellung - fachgerecht und nachhaltig.",
+    bullets: ["Drainage", "Abdichtung", "Wiederherstellung", "Reparatur", "Bestehende Flächen"],
   },
 ];
 
 const projects = [
   {
-    title: "Modernes Einfamilienhaus",
-    location: "Niedersachsen",
-    type: "Wohnbau",
-    text: "Klare Architektur, hochwertige Materialien und ein durchdachter Bauprozess vom Entwurf bis zur Übergabe.",
-    image: "/images/project-family-house.jpg",
-    alt: "Modernes Einfamilienhaus in warmer Abendstimmung",
+    title: "Radwegbrücke Bremke",
+    category: "Außenanlagen",
+    image: "/krebs/images/reference-bridge.jpg",
   },
   {
-    title: "Bürogebäude mit klarer Struktur",
-    location: "Hannover",
-    type: "Gewerbebau",
-    text: "Effiziente Flächenplanung, repräsentative Außenwirkung und präzise Umsetzung.",
-    image: "/images/project-office.jpg",
-    alt: "Bürogebäude mit klarer architektonischer Struktur",
+    title: "Überlandleitung Billeben",
+    category: "Kanalbau",
+    image: "/krebs/images/reference-pipe.jpg",
   },
   {
-    title: "Sanierung eines Bestandsobjekts",
-    location: "Göttingen",
-    type: "Modernisierung",
-    text: "Substanz erhalten, Energieeffizienz verbessern und den Wert der Immobilie steigern.",
-    image: "/images/project-renovation.jpg",
-    alt: "Saniertes Bestandsobjekt mit hochwertiger moderner Fassade",
+    title: "Feuerwehrzufahrt Göttingen-Nord",
+    category: "Pflasterbau",
+    image: "/krebs/images/reference-paving.jpg",
+  },
+  {
+    title: "Pflasterflächen im Bestand",
+    category: "Straßenbau",
+    image: "/krebs/images/site-roadworks.jpg",
+  },
+  {
+    title: "Abbruch & Baugrube",
+    category: "Erdbau",
+    image: "/krebs/images/hero-tiefbau.jpg",
+  },
+  {
+    title: "Außenanlage im Ortskern",
+    category: "Außenanlagen",
+    image: "/krebs/images/site-excavation.jpg",
   },
 ];
 
-const processSteps = [
-  ["Erstgespräch", "Wir verstehen Ziele, Grundstück, Anforderungen, Budgetrahmen und Zeitplan."],
-  ["Analyse & Konzept", "Wir prüfen Machbarkeit, Struktur und die sinnvollste Vorgehensweise."],
-  ["Planung & Angebot", "Sie erhalten eine klare Grundlage für Entscheidung, Kosten und nächste Schritte."],
-  ["Umsetzung", "Wir koordinieren Gewerke, Qualität, Termine und Kommunikation."],
-  ["Übergabe & Betreuung", "Das Projekt wird sauber abgeschlossen und dokumentiert übergeben."],
+const values = [
+  ["Klare Werte", "Verlässlichkeit, transparente Abläufe und klare Kommunikation."],
+  ["Moderne Technik", "Eigener Maschinenpark und moderne Baustellenlogistik."],
+  ["Eigene Kolonnen", "Erfahrene Teams, die Hand in Hand arbeiten."],
+  ["Saubere Ausführung", "Termingerechte Arbeit und fachgerechte Wiederherstellung."],
 ];
 
-const qualityItems = [
-  {
-    title: "Präzise Planung",
-    text: "Klare Entscheidungen vor Baubeginn: Anforderungen, Kostenrahmen, Termine und technische Details werden sauber vorbereitet.",
-  },
-  {
-    title: "Saubere Ausführung",
-    text: "Koordinierte Gewerke, dokumentierte Abstimmungen und ein Qualitätsanspruch, der auf der Baustelle sichtbar wird.",
-  },
-  {
-    title: "Transparente Kommunikation",
-    text: "Regelmäßige Updates, feste Ansprechpartner und nachvollziehbare nächste Schritte für alle Beteiligten.",
-  },
-  {
-    title: "Verantwortung bis zur Übergabe",
-    text: "Wir begleiten das Projekt bis zum Abschluss, prüfen Details und übergeben strukturiert dokumentiert.",
-  },
+const roles = [
+  "Polier / Vorarbeiter",
+  "Baggerfahrer / Maschinist",
+  "Facharbeiter Tief- & Straßenbau",
+  "LKW-Fahrer",
+  "Auszubildender Tief- & Straßenbau",
+  "Initiativbewerbung",
 ];
 
 export default function Home() {
@@ -90,195 +96,247 @@ export default function Home() {
     <>
       <Header />
       <main>
-        <CinematicHero />
-
-        <section className="trust-bar" aria-label="Demo-Vertrauensmerkmale">
-          {[
-            "15+ Jahre Erfahrung",
-            "Wohnbau & Gewerbebau",
-            "Feste Ansprechpartner",
-            "Transparente Projektabläufe",
-            "Qualität nach deutschen Standards",
-          ].map((item) => (
-            <span key={item}>{item}</span>
-          ))}
-        </section>
-
-        <section id="leistungen" className="section services-section">
-          <div className="section-narrow">
-            <h2>Leistungen für anspruchsvolle Bauprojekte</h2>
-            <p>
-              Von der ersten Einschätzung bis zur koordinierten Übergabe: Bauwerk Meister verbindet
-              technische Klarheit mit persönlicher Verantwortung.
-            </p>
-          </div>
-          <div className="service-grid">
-            {services.map((service, index) => (
-              <article className="service-card reveal-card" key={service.title}>
-                <div className={`service-visual service-visual-${index + 1}`}>
-                  <Image src={service.image} alt={service.alt} width={1280} height={720} />
-                </div>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="projekte" className="section projects-section">
-          <div className="section-narrow">
-            <h2>Ausgewählte Projekte</h2>
-            <p>Ruhige Architektur, klare Entscheidungen und eine Umsetzung, die im Alltag standhält.</p>
-          </div>
-          <div className="project-grid">
-            {projects.map((project) => (
-              <article className="project-card reveal-card" key={project.title}>
-                <div className="project-image">
-                  <Image src={project.image} alt={project.alt} width={1280} height={720} />
-                  <span>{project.type}</span>
-                </div>
-                <div className="project-body">
-                  <p>{project.location}</p>
-                  <h3>{project.title}</h3>
-                  <p>{project.text}</p>
-                  <a href="#kontakt">Projekt ansehen</a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section comparison-section" aria-labelledby="comparison-title">
-          <div className="comparison-copy">
-            <h2 id="comparison-title">Was gute Bauplanung verändert</h2>
-            <p>
-              Gute Planung nimmt Unsicherheit aus Entscheidungen. Sie macht Kosten, Termine und
-              Verantwortlichkeiten sichtbar, bevor sie zum Risiko werden.
-            </p>
-          </div>
-          <div className="comparison-panel">
-            <div>
-              <h3>Vorher</h3>
-              <ul>
-                <li>Unklare Kosten</li>
-                <li>Verzögerte Kommunikation</li>
-                <li>Unsichere Abläufe</li>
-                <li>Zu viele offene Fragen</li>
-              </ul>
+        <section id="top" className="hero-section" aria-labelledby="hero-title">
+          <video
+            className="hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/krebs/images/hero-cat.jpg"
+          >
+            <source src="/krebs/videos/imagefilm.mp4" type="video/mp4" />
+          </video>
+          <div className="hero-shade" />
+          <div className="hero-layout">
+            <div className="hero-copy">
+              <p className="eyebrow">Tiefbau · Straßenbau · Kanalbau</p>
+              <h1 id="hero-title">
+                <span>Bauen,</span>
+                <span>was</span>
+                <span>verbindet.</span>
+              </h1>
+              <p>
+                Krebs Tief- & Straßenbau realisiert Erdarbeiten, Rohrleitungsbau,
+                Pflasterflächen, Außenanlagen und Sanierungen - mit klarer Abstimmung,
+                erfahrenen Kolonnen und sichtbaren Ergebnissen.
+              </p>
+              <div className="hero-actions">
+                <a className="button button-red" href="#kontakt">Projekt anfragen</a>
+                <a className="button button-ghost" href="#referenzen">Referenzen ansehen</a>
+              </div>
             </div>
-            <span className="comparison-divider" aria-hidden="true" />
+            <div className="hero-mark" aria-hidden="true">
+              <span />
+            </div>
+          </div>
+          <div className="hero-facts" aria-label="Krebs Tiefbau Fakten">
             <div>
-              <h3>Nachher</h3>
-              <ul>
-                <li>Transparente Planung</li>
-                <li>Feste Ansprechpartner</li>
-                <li>Klare Projektphasen</li>
-                <li>Verlässliche Entscheidungen</li>
-              </ul>
+              <span>Seit 2007</span>
+              <strong>im Bau aktiv</strong>
+            </div>
+            <div>
+              <span>Region</span>
+              <strong>Göttingen · Kassel · Northeim · Heiligenstadt</strong>
+            </div>
+            <div>
+              <span>Leistungen</span>
+              <strong>Kanalbau · Straßenbau · Erdbau · Pflasterbau</strong>
+            </div>
+            <div>
+              <span>Auftraggeber</span>
+              <strong>Öffentliche, gewerbliche und private Projekte</strong>
             </div>
           </div>
         </section>
 
-        <section id="prozess" className="section process-section">
-          <div className="process-intro">
-            <h2>So läuft Ihr Bauprojekt ab</h2>
-            <p>Ein strukturierter Ablauf schafft Orientierung für Bauherren, Partner und alle Gewerke.</p>
+        <section id="leistungen" className="section light-section">
+          <div className="services-showcase">
+            <div className="services-intro">
+              <p className="eyebrow red">Was wir draußen möglich machen</p>
+              <h2>Unsere Leistungen</h2>
+              <p>
+                Tiefbau, Straßenbau und Außenanlagen aus einer Hand: technisch sauber
+                geplant, mit eigenen Kolonnen umgesetzt und auf der Baustelle sichtbar
+                ordentlich geführt.
+              </p>
+              <a className="button button-red" href="#kontakt">Beratung anfordern</a>
+            </div>
+            <div className="services-media">
+              <Image src="/krebs/images/site-excavation.jpg" alt="Krebs Tiefbau Bagger auf einer Baustelle" width={1200} height={900} />
+            </div>
+            <div className="service-list">
+              {services.map((service, index) => (
+                <article className="service-card" key={service.title}>
+                  <div className="service-index">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span className="k-icon small" aria-hidden="true" />
+                  </div>
+                  <div className="service-body">
+                    <h3>{service.title}</h3>
+                    <p>{service.text}</p>
+                    <a href="#referenzen">Projektbeispiele ansehen</a>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
-          <div className="process-list">
-            {processSteps.map(([title, text], index) => (
-              <article className="process-step" key={title}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <div>
+        </section>
+
+        <section className="focus-section" aria-labelledby="focus-title">
+          <div className="focus-copy">
+            <p className="eyebrow red">Projekt im Fokus</p>
+            <h2 id="focus-title">Kanal- und Rohrleitungsbau im Bestand</h2>
+            <dl>
+              <div>
+                <dt>Leistung</dt>
+                <dd>Kanalbau, Rohrleitungsbau und Wiederherstellung</dd>
+              </div>
+              <div>
+                <dt>Aufgabe</dt>
+                <dd>Enge Abstimmung, saubere Baugrube und fachgerechte Verlegung.</dd>
+              </div>
+              <div>
+                <dt>Ergebnis</dt>
+                <dd>Belastbare Infrastruktur und termingerechte Übergabe.</dd>
+              </div>
+            </dl>
+            <a className="button button-red" href="#kontakt">Projekt im Detail anfragen</a>
+          </div>
+          <div className="focus-media">
+            <Image src="/krebs/images/reference-pipe.jpg" alt="Rohrleitungsarbeiten auf einer Baustelle" width={1200} height={900} />
+            <div className="focus-thumbs" aria-hidden="true">
+              <Image src="/krebs/images/hero-tiefbau.jpg" alt="" width={500} height={360} />
+              <Image src="/krebs/images/site-roadworks.jpg" alt="" width={500} height={360} />
+              <Image src="/krebs/images/reference-paving.jpg" alt="" width={500} height={360} />
+            </div>
+          </div>
+          <div className="stats-row">
+            <div><strong>2007</strong><span>gegründet</span></div>
+            <div><strong>30+</strong><span>Mitarbeiter</span></div>
+            <div><strong>100+</strong><span>Projekte jährlich</span></div>
+            <div><strong>Regional</strong><span>für die Region im Einsatz</span></div>
+          </div>
+        </section>
+
+        <section id="referenzen" className="section references-section">
+          <div className="references-layout">
+            <div className="references-rail">
+              <p className="eyebrow">Referenzen</p>
+              <h2>Dokumentierte Baustellen nach Leistungsbereich</h2>
+              <div className="filter-row" aria-label="Leistungsbereiche">
+                {["Alle", "Kanalbau", "Straßenbau", "Erdbau", "Pflasterbau", "Außenanlagen"].map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
+              <a className="button button-outline-red" href="#kontakt">Mehr Referenzen ansehen</a>
+            </div>
+            <div className="project-grid">
+              {projects.map((project) => (
+                <article className="project-card" key={project.title}>
+                  <Image src={project.image} alt="" width={900} height={620} />
+                  <div>
+                    <span>{project.category}</span>
+                    <h3>{project.title}</h3>
+                    <a href="#kontakt">Projekt ansehen</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="unternehmen" className="company-section">
+          <div className="company-copy">
+            <p className="eyebrow red">Unternehmen</p>
+            <h2>Erfahrung. Technik. Verlässlichkeit.</h2>
+            <p>
+              Krebs Tief- & Straßenbau wurde 2015 gegründet und ist heute ein
+              zuverlässiger Partner für Kommunen, Unternehmen und private Bauherren
+              in Göttingen, Kassel, Northeim und Heiligenstadt.
+            </p>
+            <p>
+              Wir realisieren Tiefbau-, Straßenbau- und Kanalbauprojekte mit moderner
+              Technik, erfahrenen Teams und klarem Anspruch.
+            </p>
+            <a className="button button-red" href="#kontakt">Mehr über uns</a>
+          </div>
+          <div className="company-image">
+            <Image src="/krebs/images/career-team.jpg" alt="Bauarbeiter und Bagger auf einer Baustelle" width={1400} height={760} />
+          </div>
+          <div className="values-panel">
+            <div className="values-intro">
+              <p className="eyebrow red">Wofür wir stehen</p>
+              <h3>Klare Werte. Verlässliche Partnerschaft.</h3>
+            </div>
+            <div className="value-grid">
+              {values.map(([title, text], index) => (
+                <article key={title}>
+                  <div>
+                    <span className="k-icon small" aria-hidden="true" />
+                    <strong>{String(index + 1).padStart(2, "0")}</strong>
+                  </div>
                   <h3>{title}</h3>
                   <p>{text}</p>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
+            <blockquote>
+              <span aria-hidden="true">“</span>
+              <p>Wir bauen nicht nur Infrastruktur. Wir schaffen Verbindungen für morgen.</p>
+            </blockquote>
           </div>
         </section>
 
-        <section id="qualitaet" className="section quality-section">
-          <div className="quality-main">
-            <div className="quality-media" aria-hidden="true">
-              <Image src="/images/project-office.jpg" alt="" width={1280} height={720} />
-            </div>
-            <div className="quality-content">
-              <span>Qualitätsversprechen</span>
-              <h2>Qualität ist kein Zufall</h2>
-              <p>
-                Ein gutes Bauprojekt braucht mehr als Handwerk. Es braucht Struktur, Verantwortung und
-                eine klare Kommunikation zwischen allen Beteiligten.
-              </p>
-            </div>
-          </div>
-          <div className="quality-grid">
-            {qualityItems.map((item, index) => (
-              <article className="quality-card" key={item.title}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="cta-section">
-          <div className="cta-copy">
-            <span>Der nächste Schritt</span>
-            <h2>Planen Sie ein Bauprojekt?</h2>
+        <section id="karriere" className="career-section">
+          <div className="career-copy">
+            <p className="eyebrow">Karriere</p>
+            <h2>Draußen arbeiten. Im Team liefern. Abends sehen, was geschafft ist.</h2>
             <p>
-              Lassen Sie uns gemeinsam prüfen, wie Ihr Projekt sicher, hochwertig und strukturiert
-              umgesetzt werden kann.
+              Ob Facharbeiter, Maschinist, Polier oder Azubi - bei Krebs arbeitet ein
+              echtes Team mit moderner Technik, festen Abläufen und klaren Aufgaben.
             </p>
-            <div className="cta-actions">
-              <a className="button-primary" href="#kontakt">
-                Projekt anfragen
-              </a>
-              <a className="button-secondary" href="#leistungen">
-                Leistungen ansehen
-              </a>
-            </div>
-            <small>Unverbindliches Erstgespräch. Klare Einschätzung. Keine Massenabfertigung.</small>
           </div>
-          <div className="cta-panel" aria-label="Was Sie im Erstgespräch erwartet">
-            {[
-              "Projektziel und Rahmen klären",
-              "Machbarkeit und nächste Schritte einschätzen",
-              "Passenden Ablauf für Ihr Vorhaben strukturieren",
-            ].map((item, index) => (
-              <div key={item}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <p>{item}</p>
-              </div>
+          <div className="role-grid">
+            {roles.map((role) => (
+              <a href="#kontakt" key={role}>
+                <span className="k-icon small" aria-hidden="true" />
+                {role}
+                <small>Mehr erfahren</small>
+              </a>
             ))}
           </div>
+          <a className="button button-red" href="#kontakt">In 60 Sekunden bewerben</a>
         </section>
 
-        <section id="kontakt" className="section contact-section">
+        <section id="kontakt" className="contact-section">
           <div className="contact-copy">
-            <h2>Projekt anfragen</h2>
+            <p className="eyebrow">Baustellen-Check</p>
+            <h2>Lassen Sie uns Ihr Projekt einschätzen.</h2>
             <p>
-              Beschreiben Sie kurz Ihr Vorhaben. Bauwerk Meister meldet sich mit einer klaren ersten
-              Einschätzung zurück.
+              Schildern Sie uns Ihr Vorhaben. Wir melden uns schnell und unverbindlich bei Ihnen.
             </p>
+            <address>
+              <a href="tel:+4936066086080">03606 / 60 86 08 0</a>
+              <a href="mailto:info@krebs-tiefbau.de">info@krebs-tiefbau.de</a>
+              <span>Siemeröder Straße 2<br />37308 Heilbad Heiligenstadt OT Siemerode</span>
+              <span>Mo - Do 8:00 - 16:00 Uhr<br />Fr 8:00 - 13:00 Uhr</span>
+            </address>
           </div>
           <ContactForm />
         </section>
       </main>
 
       <footer className="site-footer">
-        <strong>
-          <BrandLogo />
-          <span>GmbH</span>
-        </strong>
+        <BrandLogo variant="light" />
         <nav aria-label="Footer Navigation">
           <a href="#leistungen">Leistungen</a>
-          <a href="#projekte">Projekte</a>
+          <a href="#referenzen">Referenzen</a>
+          <a href="#unternehmen">Unternehmen</a>
           <a href="#kontakt">Kontakt</a>
-          <a href="#">Impressum</a>
-          <a href="#">Datenschutz</a>
         </nav>
-        <span>Copyright 2026 Bauwerk Meister GmbH</span>
+        <span>Copyright 2026 Krebs Tief- & Straßenbau GmbH</span>
       </footer>
     </>
   );

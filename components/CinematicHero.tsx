@@ -5,6 +5,27 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+const DESKTOP_VIDEO_SRC = "/videos/bauwerk-story.mp4";
+const MOBILE_VIDEO_SRC = "/videos/bauwerk-story-mobile.mp4";
+const MOBILE_QUERY = "(max-width: 720px)";
+
+function getActiveVideo(root: HTMLElement | null) {
+  if (!root || typeof window === "undefined") return null;
+
+  const mobileVideo = root.querySelector<HTMLVideoElement>(".story-video-mobile");
+  const desktopVideo = root.querySelector<HTMLVideoElement>(".story-video-desktop");
+
+  return window.matchMedia(MOBILE_QUERY).matches ? mobileVideo : desktopVideo;
+}
+
+function pauseInactiveVideos(section: HTMLElement, active: HTMLVideoElement) {
+  section.querySelectorAll<HTMLVideoElement>(".story-video").forEach((element) => {
+    if (element === active) return;
+    element.pause();
+    element.currentTime = 0;
+  });
+}
+
 const phases = [
   {
     label: "Grundstück",
@@ -67,7 +88,6 @@ function AnimatedTitle({
 
 export function CinematicHero() {
   const rootRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const activeStepRef = useRef(0);
   const frameRef = useRef<number | null>(null);
   const targetProgressRef = useRef(0);
@@ -76,9 +96,7 @@ export function CinematicHero() {
 
   useEffect(() => {
     const section = rootRef.current;
-    const video = videoRef.current;
-
-    if (!section || !video) return;
+    if (!section) return;
 
     if (prefersReducedMotion()) {
       setReducedMotion(true);
@@ -87,7 +105,11 @@ export function CinematicHero() {
 
     gsap.registerPlugin(ScrollTrigger);
 
+    const mobileQuery = window.matchMedia(MOBILE_QUERY);
     let metadataHandler: (() => void) | undefined;
+    let boundVideo: HTMLVideoElement | null = null;
+    let scrollTrigger: ScrollTrigger | null = null;
+    let onViewportChange: (() => void) | undefined;
 
     const ctx = gsap.context(() => {
       const dots = gsap.utils.toArray<HTMLElement>(".phase-dot");
@@ -95,17 +117,23 @@ export function CinematicHero() {
       const pageProgress = section.querySelector<HTMLElement>(".scroll-progress");
 
       const setupScrollVideo = () => {
-        if (!video.duration) return;
+        const video = getActiveVideo(section);
+        if (!video || !video.duration) return;
 
+        scrollTrigger?.kill();
+        boundVideo = video;
+        pauseInactiveVideos(section, video);
         video.pause();
         video.currentTime = 0;
 
         const updateVideoFrame = () => {
           frameRef.current = null;
-          video.currentTime = video.duration * targetProgressRef.current;
+          if (boundVideo?.duration) {
+            boundVideo.currentTime = boundVideo.duration * targetProgressRef.current;
+          }
         };
 
-        ScrollTrigger.create({
+        scrollTrigger = ScrollTrigger.create({
           trigger: section,
           start: "top top",
           end: () => `+=${Math.max(4000, window.innerHeight * 4.8)}`,
@@ -143,21 +171,49 @@ export function CinematicHero() {
         ScrollTrigger.refresh();
       };
 
-      if (video.readyState >= 1) {
-        setupScrollVideo();
-      } else {
+      const bindVideo = () => {
+        if (metadataHandler && boundVideo) {
+          boundVideo.removeEventListener("loadedmetadata", metadataHandler);
+          metadataHandler = undefined;
+        }
+
+        const video = getActiveVideo(section);
+        if (!video) return;
+
+        if (video.readyState >= 1) {
+          setupScrollVideo();
+          return;
+        }
+
         metadataHandler = setupScrollVideo;
         video.addEventListener("loadedmetadata", metadataHandler, { once: true });
-      }
+      };
+
+      bindVideo();
+
+      onViewportChange = () => {
+        scrollTrigger?.kill();
+        scrollTrigger = null;
+        targetProgressRef.current = 0;
+        activeStepRef.current = 0;
+        setActiveStep(0);
+        bindVideo();
+      };
+
+      mobileQuery.addEventListener("change", onViewportChange);
     }, section);
 
     return () => {
+      if (onViewportChange) {
+        mobileQuery.removeEventListener("change", onViewportChange);
+      }
       if (frameRef.current !== null) {
         window.cancelAnimationFrame(frameRef.current);
       }
-      if (metadataHandler) {
-        video.removeEventListener("loadedmetadata", metadataHandler);
+      if (metadataHandler && boundVideo) {
+        boundVideo.removeEventListener("loadedmetadata", metadataHandler);
       }
+      scrollTrigger?.kill();
       ctx.revert();
     };
   }, []);
@@ -170,12 +226,18 @@ export function CinematicHero() {
       <div className="story-stage" aria-hidden="true">
         <div className="visual-fallback" />
         <video
-          ref={videoRef}
-          src="/videos/bauwerk-story.mp4"
+          src={DESKTOP_VIDEO_SRC}
           muted
           playsInline
           preload="auto"
-          className="story-video absolute inset-0 h-full w-full object-cover"
+          className="story-video story-video-desktop absolute inset-0 h-full w-full object-cover"
+        />
+        <video
+          src={MOBILE_VIDEO_SRC}
+          muted
+          playsInline
+          preload="auto"
+          className="story-video story-video-mobile absolute inset-0 h-full w-full object-cover"
         />
         <div className="video-shade" />
         <div className="video-gradient" />
@@ -208,6 +270,18 @@ export function CinematicHero() {
                 <AnimatedTitle as="h2" text={current.title} />
               )}
               <p className="story-subline">{current.text}</p>
+              {activeStep === 0 && (
+                <div className="hero-actions">
+                  <a className="button-primary" href="#kontakt">
+                    <span className="button-label">Projekt anfragen</span>
+                    <span className="button-icon" aria-hidden="true">↗</span>
+                  </a>
+                  <a className="button-secondary button-quiet" href="#leistungen">
+                    <span className="button-label">Leistungen</span>
+                    <span className="button-icon" aria-hidden="true">↓</span>
+                  </a>
+                </div>
+              )}
             </div>
           )}
 
