@@ -83,9 +83,21 @@ const values = [
 ];
 
 const careerProofs = [
-  ["Ein Team, das hält.", "Erfahrene Kollegen, kurze Wege und gegenseitiger Respekt."],
-  ["Moderne Technik.", "Leistungsstarke Maschinen und digitale Abläufe auf der Baustelle."],
-  ["Sichere Zukunft.", "Regionale Projekte, feste Strukturen und verlässliche Perspektiven."],
+  {
+    icon: "team",
+    title: "Ein Team, das hält.",
+    text: "Erfahrene Kollegen, kurze Wege und gegenseitiger Respekt.",
+  },
+  {
+    icon: "machine",
+    title: "Moderne Technik.",
+    text: "Leistungsstarke Maschinen und digitale Prozesse auf der Baustelle.",
+  },
+  {
+    icon: "shield",
+    title: "Sichere Zukunft.",
+    text: "Regionale Projekte, sichere Abläufe und verlässliche Perspektiven.",
+  },
 ];
 
 const roles = [
@@ -302,6 +314,9 @@ export default function Home() {
         <section id="karriere" className="career-section">
           <div className="career-shell">
             <div className="career-copy">
+              <div className="career-brand">
+                <BrandLogo />
+              </div>
               <p className="eyebrow red">Karriere</p>
               <h2>Bau mit uns die Infrastruktur von morgen.</h2>
               <p>
@@ -309,11 +324,11 @@ export default function Home() {
                 echtes Team mit moderner Technik, festen Abläufen und klaren Aufgaben.
               </p>
               <div className="career-proofs">
-                {careerProofs.map(([title, text]) => (
-                  <div key={title}>
-                    <span className="k-icon small" aria-hidden="true" />
-                    <strong>{title}</strong>
-                    <span>{text}</span>
+                {careerProofs.map((proof) => (
+                  <div key={proof.title}>
+                    <span className={`career-proof-icon ${proof.icon}`} aria-hidden="true" />
+                    <strong>{proof.title}</strong>
+                    <span>{proof.text}</span>
                   </div>
                 ))}
               </div>
