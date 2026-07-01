@@ -335,22 +335,22 @@ section[id] {
 
 html.animations-pending .hero-copy h1 span {
   opacity: 0;
-  transform: translateY(56px);
+  transform: translateY(20px);
 }
 
 html.animations-pending .hero-copy p:not(.eyebrow) {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(12px);
 }
 
 html.animations-pending .hero-actions a {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(10px);
 }
 
 html.animations-pending .hero-facts div {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(10px);
 }
 
 .hero-copy p:not(.eyebrow) {
