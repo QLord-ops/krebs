@@ -21,7 +21,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 118px;
   overflow-x: clip;
 }
@@ -271,7 +270,6 @@ section[id] {
   object-fit: cover;
   filter: brightness(1.05) contrast(1.06) saturate(1.08);
   transform-origin: center center;
-  will-change: transform;
 }
 
 .hero-shade {
@@ -3090,7 +3088,6 @@ html.animations-pending .hero-facts div {
 
 .reveal-word {
   display: inline-block;
-  will-change: transform, opacity;
 }
 
 .reveal-space {
