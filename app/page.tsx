@@ -1,42 +1,39 @@
 import Image from "next/image";
 import { BrandLogo } from "@/components/BrandLogo";
+import { CompanyMap } from "@/components/CompanyMap";
 import { ContactForm } from "@/components/ContactForm";
 import { Header } from "@/components/Header";
+import { ReferencesSection } from "@/components/ReferencesSection";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const services = [
   {
     title: "Kanal- & Rohrleitungsbau",
-    image: "/krebs/images/hero-tiefbau.jpg",
     text: "Neubau und Sanierung von Schmutz-, Regen- und Trinkwasserleitungen inkl. Hausanschlüsse.",
     bullets: ["Hausanschlüsse", "Regenwasser", "Schmutzwasser", "Trinkwasser", "Fernwärme"],
   },
   {
     title: "Straßenbau",
-    image: "/krebs/images/site-roadworks.jpg",
     text: "Gehwege, Zufahrten, Fahrbahnen und Wiederherstellung - dauerhaft belastbar ausgeführt.",
     bullets: ["Gehwege", "Zufahrten", "Fahrbahnen", "Wiederherstellung", "Erschließung"],
   },
   {
     title: "Erdbau",
-    image: "/krebs/images/site-excavation.jpg",
     text: "Aushub, Baugruben, Planum und Verdichtung - präzise vorbereitet und termingerecht umgesetzt.",
     bullets: ["Aushub", "Baugruben", "Planum", "Verdichtung", "Geländeprofilierung"],
   },
   {
     title: "Pflasterbau",
-    image: "/krebs/images/reference-paving.jpg",
     text: "Einfahrten, Höfe, Stellplätze und Wege - funktional, langlebig und optisch hochwertig.",
     bullets: ["Einfahrten", "Höfe", "Gehwege", "Stellplätze", "Naturstein & Betonpflaster"],
   },
   {
     title: "Außenanlagen",
-    image: "/krebs/images/reference-bridge.jpg",
     text: "Zufahrten, Terrassen, Entwässerung und Gestaltung - Ihr Außenbereich in besten Händen.",
     bullets: ["Zufahrten", "Stellplätze", "Terrassen", "Entwässerung", "Stützmauern"],
   },
   {
     title: "Sanierung & Umbau",
-    image: "/krebs/images/hero-cat.jpg",
     text: "Drainage, Abdichtung, Reparaturen und Wiederherstellung - fachgerecht und nachhaltig.",
     bullets: ["Drainage", "Abdichtung", "Wiederherstellung", "Reparatur", "Bestehende Flächen"],
   },
@@ -47,31 +44,37 @@ const projects = [
     title: "Radwegbrücke Bremke",
     category: "Außenanlagen",
     image: "/krebs/images/reference-bridge.jpg",
+    alt: "Radwegbrücke Bremke – Außenanlagenprojekt von Krebs Tiefbau",
   },
   {
     title: "Überlandleitung Billeben",
     category: "Kanalbau",
     image: "/krebs/images/focus-kanal-reference.png",
+    alt: "Überlandleitung Billeben – Kanal- und Rohrleitungsbau",
   },
   {
     title: "Feuerwehrzufahrt Göttingen-Nord",
     category: "Pflasterbau",
     image: "/krebs/images/reference-paving.jpg",
+    alt: "Feuerwehrzufahrt Göttingen-Nord – Pflasterbau",
   },
   {
     title: "Pflasterflächen im Bestand",
     category: "Straßenbau",
     image: "/krebs/images/site-roadworks.jpg",
+    alt: "Pflasterflächen im Bestand – Straßenbau",
   },
   {
     title: "Abbruch & Baugrube",
     category: "Erdbau",
     image: "/krebs/images/hero-tiefbau.jpg",
+    alt: "Abbruch und Baugrube – Erdbauarbeiten",
   },
   {
     title: "Außenanlage im Ortskern",
     category: "Außenanlagen",
     image: "/krebs/images/site-excavation.jpg",
+    alt: "Außenanlage im Ortskern – Gelände- und Erdbauarbeiten",
   },
 ];
 
@@ -121,10 +124,9 @@ export default function Home() {
             muted
             loop
             playsInline
-            preload="metadata"
-            poster="/krebs/images/hero-cat.jpg"
+            preload="auto"
           >
-            <source src="/krebs/videos/imagefilm.mp4" type="video/mp4" />
+            <source src="/krebs/videos/imagefilm-web.mp4" type="video/mp4" />
           </video>
           <div className="hero-shade" />
           <div className="hero-layout">
@@ -145,14 +147,11 @@ export default function Home() {
                 <a className="button button-ghost" href="#referenzen">Referenzen ansehen</a>
               </div>
             </div>
-            <div className="hero-mark" aria-hidden="true">
-              <span />
-            </div>
           </div>
           <div className="hero-facts" aria-label="Krebs Tiefbau Fakten">
             <div>
               <span>Seit 2007</span>
-              <strong>im Bau aktiv</strong>
+              <strong>im Tiefbau aktiv</strong>
             </div>
             <div>
               <span>Region</span>
@@ -182,7 +181,13 @@ export default function Home() {
               <a className="button button-red" href="#kontakt">Beratung anfordern</a>
             </div>
             <div className="services-media">
-              <Image src="/krebs/images/site-excavation.jpg" alt="Krebs Tiefbau Bagger auf einer Baustelle" width={1200} height={900} />
+              <Image
+                src="/krebs/images/site-excavation.jpg"
+                alt="Krebs Tiefbau Bagger auf einer Baustelle"
+                width={1200}
+                height={900}
+                sizes="(max-width: 720px) 100vw, (max-width: 1040px) 90vw, 40vw"
+              />
             </div>
             <div className="service-list">
               {services.map((service, index) => (
@@ -194,6 +199,11 @@ export default function Home() {
                   <div className="service-body">
                     <h3>{service.title}</h3>
                     <p>{service.text}</p>
+                    <ul>
+                      {service.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
                     <a href="#referenzen">Projektbeispiele ansehen</a>
                   </div>
                 </article>
@@ -227,46 +237,32 @@ export default function Home() {
             <a className="button button-red" href="#kontakt">Projekt im Detail anfragen</a>
           </div>
           <div className="focus-media">
-            <Image className="focus-main-image" src="/krebs/images/focus-kanal-reference.png" alt="Kanalbau und Rohrleitungsgraben im Bestand" width={1200} height={900} />
+            <div className="focus-main-frame">
+              <Image
+                className="focus-main-image"
+                src="/krebs/images/focus-kanal-reference.png"
+                alt="Kanalbau und Rohrleitungsgraben im Bestand"
+                fill
+                sizes="(max-width: 720px) 100vw, (max-width: 1040px) 90vw, min(55vw, 630px)"
+                priority
+              />
+            </div>
             <div className="focus-thumbs" aria-hidden="true">
-              <Image src="/krebs/images/hero-tiefbau.jpg" alt="" width={500} height={360} />
-              <Image src="/krebs/images/site-roadworks.jpg" alt="" width={500} height={360} />
-              <Image src="/krebs/images/site-excavation.jpg" alt="" width={500} height={360} />
+              <Image src="/krebs/images/hero-tiefbau.jpg" alt="" width={500} height={360} sizes="33vw" />
+              <Image src="/krebs/images/site-roadworks.jpg" alt="" width={500} height={360} sizes="33vw" />
+              <Image src="/krebs/images/site-excavation.jpg" alt="" width={500} height={360} sizes="33vw" />
             </div>
           </div>
           <div className="stats-row">
-            <div><strong>2007</strong><span>gegründet</span></div>
-            <div><strong>30+</strong><span>Mitarbeiter</span></div>
+            <div><strong>2007</strong><span>Erfahrung im Tiefbau</span></div>
+            <div><strong>2015</strong><span>GmbH gegründet</span></div>
             <div><strong>100+</strong><span>Projekte jährlich</span></div>
             <div><strong>Regional</strong><span>für die Region im Einsatz</span></div>
           </div>
         </section>
 
         <section id="referenzen" className="section references-section">
-          <div className="references-layout">
-            <div className="references-rail">
-              <p className="eyebrow">Referenzen</p>
-              <h2>Dokumentierte Baustellen nach Leistungsbereich</h2>
-              <div className="filter-row" aria-label="Leistungsbereiche">
-                {["Alle", "Kanalbau", "Straßenbau", "Erdbau", "Pflasterbau", "Außenanlagen"].map((item) => (
-                  <span key={item}>{item}</span>
-                ))}
-              </div>
-              <a className="button button-outline-red" href="#kontakt">Mehr Referenzen ansehen</a>
-            </div>
-            <div className="project-grid">
-              {projects.map((project) => (
-                <article className="project-card" key={project.title}>
-                  <Image src={project.image} alt="" width={900} height={620} />
-                  <div>
-                    <span>{project.category}</span>
-                    <h3>{project.title}</h3>
-                    <a href="#kontakt">Projekt ansehen</a>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
+          <ReferencesSection projects={projects} />
         </section>
 
         <section id="unternehmen" className="company-section">
@@ -274,9 +270,9 @@ export default function Home() {
             <p className="eyebrow red">Unternehmen</p>
             <h2>Erfahrung. Technik. Verlässlichkeit.</h2>
             <p>
-              Krebs Tief- & Straßenbau wurde 2015 gegründet und ist heute ein
-              zuverlässiger Partner für Kommunen, Unternehmen und private Bauherren
-              in Göttingen, Kassel, Northeim und Heiligenstadt.
+              Die Krebs Tief- & Straßenbau GmbH wurde 2015 gegründet. Unser Erfolgsweg
+              begann bereits 2007 – heute sind wir ein zuverlässiger Partner für Kommunen,
+              Unternehmen und private Bauherren in Göttingen, Kassel, Northeim und Heiligenstadt.
             </p>
             <p>
               Wir realisieren Tiefbau-, Straßenbau- und Kanalbauprojekte mit moderner
@@ -285,7 +281,13 @@ export default function Home() {
             <a className="button button-red" href="#kontakt">Mehr über uns</a>
           </div>
           <div className="company-image">
-            <Image src="/krebs/images/company-reference-team.png" alt="Krebs Team mit Bagger auf einer Baustelle" width={1400} height={760} />
+            <Image
+              src="/krebs/images/company-construction.webp"
+              alt="Krebs Team mit Bagger auf einer Baustelle"
+              width={3000}
+              height={1000}
+              sizes="(max-width: 720px) 100vw, (max-width: 1040px) 90vw, 45vw"
+            />
           </div>
           <div className="values-panel">
             <div className="values-intro">
@@ -318,7 +320,10 @@ export default function Home() {
                 <BrandLogo />
               </div>
               <p className="eyebrow red">Karriere</p>
-              <h2>Bau mit uns die Infrastruktur von morgen.</h2>
+              <h2>
+                <span>Bau mit uns die</span>
+                <span>Infrastruktur von morgen.</span>
+              </h2>
               <p>
                 Ob Facharbeiter, Maschinist, Polier oder Azubi - bei Krebs arbeitet ein
                 echtes Team mit moderner Technik, festen Abläufen und klaren Aufgaben.
@@ -336,7 +341,13 @@ export default function Home() {
             </div>
             <div className="career-board">
               <div className="career-photo">
-                <Image src="/krebs/images/company-reference-team.png" alt="Krebs Team vor Bagger auf einer Baustelle" width={1400} height={820} />
+                <Image
+                  src="/krebs/images/company-reference-team.png"
+                  alt="Krebs Team vor Bagger auf einer Baustelle"
+                  width={1400}
+                  height={820}
+                  sizes="(max-width: 720px) 100vw, (max-width: 1040px) 90vw, 50vw"
+                />
               </div>
               <div className="role-grid" aria-label="Offene Positionen">
                 {roles.map((role, index) => (
@@ -353,34 +364,48 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="kontakt" className="contact-section">
-          <div className="contact-copy">
-            <p className="eyebrow">Baustellen-Check</p>
-            <h2>Lassen Sie uns Ihr Projekt einschätzen.</h2>
-            <p>
-              Schildern Sie uns Ihr Vorhaben. Wir melden uns schnell und unverbindlich bei Ihnen.
-            </p>
-            <address>
-              <a href="tel:+4936066086080">03606 / 60 86 08 0</a>
-              <a href="mailto:info@krebs-tiefbau.de">info@krebs-tiefbau.de</a>
-              <span>Siemeröder Straße 2<br />37308 Heilbad Heiligenstadt OT Siemerode</span>
-              <span>Mo - Do 8:00 - 16:00 Uhr<br />Fr 8:00 - 13:00 Uhr</span>
-            </address>
+        <section id="kontakt" className="contact-section-wrap">
+          <div className="contact-section">
+            <div className="contact-copy">
+              <p className="eyebrow red">Baustellen-Check</p>
+              <h2>Lassen Sie uns Ihr Projekt einschätzen.</h2>
+              <p className="contact-lead">
+                Schildern Sie uns Ihr Vorhaben. Wir melden uns schnell und unverbindlich bei Ihnen.
+              </p>
+              <ul className="contact-details">
+                <li className="contact-detail">
+                  <span className="contact-detail-label">Telefon</span>
+                  <a href="tel:+4936066086080">03606 / 60 86 08 0</a>
+                </li>
+                <li className="contact-detail">
+                  <span className="contact-detail-label">E-Mail</span>
+                  <a href="mailto:info@krebs-tiefbau.de">info@krebs-tiefbau.de</a>
+                </li>
+                <li className="contact-detail">
+                  <span className="contact-detail-label">Adresse</span>
+                  <span>
+                    Siemeröder Straße 2
+                    <br />
+                    37308 Heilbad Heiligenstadt OT Siemerode
+                  </span>
+                </li>
+                <li className="contact-detail">
+                  <span className="contact-detail-label">Erreichbarkeit</span>
+                  <span>
+                    Mo – Do 8:00 – 16:00 Uhr
+                    <br />
+                    Fr 8:00 – 13:00 Uhr
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <ContactForm />
           </div>
-          <ContactForm />
+          <CompanyMap />
         </section>
       </main>
 
-      <footer className="site-footer">
-        <BrandLogo variant="light" />
-        <nav aria-label="Footer Navigation">
-          <a href="#leistungen">Leistungen</a>
-          <a href="#referenzen">Referenzen</a>
-          <a href="#unternehmen">Unternehmen</a>
-          <a href="#kontakt">Kontakt</a>
-        </nav>
-        <span>Copyright 2026 Krebs Tief- & Straßenbau GmbH</span>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

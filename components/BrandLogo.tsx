@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type BrandLogoProps = {
   variant?: "default" | "light";
 };
@@ -5,13 +7,14 @@ type BrandLogoProps = {
 export function BrandLogo({ variant = "default" }: BrandLogoProps) {
   return (
     <span className={`brand-logo brand-logo--${variant}`} aria-label="Krebs Tief- und Straßenbau">
-      <span className="brand-mark" aria-hidden="true">
-        <span />
-      </span>
-      <span className="brand-type">
-        <strong>KREBS</strong>
-        <small>TIEF- & STRASSENBAU</small>
-      </span>
+      <Image
+        src="/brand/krebs-logo.png"
+        alt=""
+        width={586}
+        height={168}
+        className="brand-logo-image"
+        priority={variant === "light"}
+      />
     </span>
   );
 }
