@@ -1374,6 +1374,7 @@ html.animations-pending .hero-facts div {
 
 .career-copy {
   position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1556,24 +1557,30 @@ html.animations-pending .hero-facts div {
   flex-direction: column;
   justify-content: center;
   min-width: 0;
-  padding: clamp(3.4rem, 6vw, 5.8rem) clamp(1.8rem, 3vw, 3rem) clamp(3rem, 5vw, 4.5rem) clamp(2.4rem, 5vw, 5rem);
+  margin-left: clamp(-5rem, -10vw, -7rem);
+  padding: clamp(3.4rem, 6vw, 5.8rem) clamp(1.8rem, 3vw, 3rem) clamp(3rem, 5vw, 4.5rem)
+    calc(clamp(2.4rem, 5vw, 5rem) + clamp(4.5rem, 9vw, 7rem));
   color: white;
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
     linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    radial-gradient(circle at 62% 10%, rgba(227, 6, 19, 0.18), transparent 22rem),
-    linear-gradient(125deg, #071113 0%, #111719 54%, #05090a 100%);
-  background-size: 86px 86px, 86px 86px, auto, auto;
+    #05090a;
+  background-size: 86px 86px, 86px 86px, auto;
 }
 
 .career-board::before {
   position: absolute;
   inset: 0;
+  z-index: 0;
   content: "";
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 28%),
-    radial-gradient(circle at 16% 82%, rgba(0, 0, 0, 0.56), transparent 24rem);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 32%);
   pointer-events: none;
+}
+
+.career-photo,
+.role-grid {
+  position: relative;
+  z-index: 1;
 }
 
 .career-photo {
@@ -1635,7 +1642,7 @@ html.animations-pending .hero-facts div {
   place-items: center;
   align-self: stretch;
   color: white;
-  background: linear-gradient(180deg, #f11924, var(--red-dark));
+  background: var(--red);
   font-size: 1rem;
   font-weight: 950;
 }
@@ -1643,6 +1650,7 @@ html.animations-pending .hero-facts div {
 .role-row strong {
   min-width: 0;
   padding: 0 1.45rem;
+  color: white;
   font-size: clamp(1.05rem, 1.35vw, 1.38rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -1651,7 +1659,7 @@ html.animations-pending .hero-facts div {
 
 .role-row small,
 .role-row em {
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(255, 255, 255, 0.72);
   font-size: 0.86rem;
   font-style: normal;
   white-space: nowrap;
@@ -2322,6 +2330,7 @@ html.animations-pending .hero-facts div {
   }
 
   .career-board {
+    margin-left: 0;
     padding: 0 clamp(1rem, 4vw, 2rem) clamp(3rem, 6vw, 4rem);
   }
 
@@ -2915,6 +2924,7 @@ html.animations-pending .hero-facts div {
   }
 
   .career-board {
+    margin-left: 0;
     padding: 0 0.8rem 2.5rem;
   }
 
