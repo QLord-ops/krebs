@@ -9,33 +9,33 @@ import { SiteFooter } from "@/components/SiteFooter";
 const services = [
   {
     title: "Kanal- & Rohrleitungsbau",
-    text: "Neubau und Sanierung von Schmutz-, Regen- und Trinkwasserleitungen inkl. Hausanschlüsse.",
-    bullets: ["Hausanschlüsse", "Regenwasser", "Schmutzwasser", "Trinkwasser", "Fernwärme"],
+    text: "Neubau und Sanierung von Schmutz-, Regen- und Trinkwasserleitungen – inklusive Hausanschlüssen.",
+    bullets: ["Regen- und Schmutzwasser", "Trinkwasser & Fernwärme", "Leitungen im Bestand", "Tiefbau & Wiederherstellung"],
   },
   {
     title: "Straßenbau",
-    text: "Gehwege, Zufahrten, Fahrbahnen und Wiederherstellung - dauerhaft belastbar ausgeführt.",
-    bullets: ["Gehwege", "Zufahrten", "Fahrbahnen", "Wiederherstellung", "Erschließung"],
+    text: "Gehwege, Zufahrten und Fahrbahnen – dauerhaft belastbar geplant und fachgerecht ausgeführt.",
+    bullets: ["Neubau & Sanierung", "Asphalt- und Pflasterflächen", "Entwässerung", "Erschließung & Anbindung"],
   },
   {
     title: "Erdbau",
-    text: "Aushub, Baugruben, Planum und Verdichtung - präzise vorbereitet und termingerecht umgesetzt.",
-    bullets: ["Aushub", "Baugruben", "Planum", "Verdichtung", "Geländeprofilierung"],
+    text: "Aushub, Baugruben, Planum und Verdichtung – präzise vorbereitet und termingerecht umgesetzt.",
+    bullets: ["Erdarbeiten & Aushub", "Baugruben", "Planum & Verdichtung", "Geländemodellierung"],
   },
   {
     title: "Pflasterbau",
-    text: "Einfahrten, Höfe, Stellplätze und Wege - funktional, langlebig und optisch hochwertig.",
-    bullets: ["Einfahrten", "Höfe", "Gehwege", "Stellplätze", "Naturstein & Betonpflaster"],
+    text: "Einfahrten, Höfe, Stellplätze und Wege – funktional, langlebig und optisch hochwertig.",
+    bullets: ["Naturstein & Betonpflaster", "Hof- und Einfahrtsflächen", "Gehwege & Stellplätze", "Sanierung im Bestand"],
   },
   {
     title: "Außenanlagen",
-    text: "Zufahrten, Terrassen, Entwässerung und Gestaltung - Ihr Außenbereich in besten Händen.",
-    bullets: ["Zufahrten", "Stellplätze", "Terrassen", "Entwässerung", "Stützmauern"],
+    text: "Zufahrten, Terrassen, Entwässerung und Gestaltung – Ihr Außenbereich in besten Händen.",
+    bullets: ["Zufahrten & Stellplätze", "Terrassen & Wege", "Entwässerung", "Stützmauern & Gelände"],
   },
   {
     title: "Sanierung & Umbau",
-    text: "Drainage, Abdichtung, Reparaturen und Wiederherstellung - fachgerecht und nachhaltig.",
-    bullets: ["Drainage", "Abdichtung", "Wiederherstellung", "Reparatur", "Bestehende Flächen"],
+    text: "Drainage, Abdichtung, Reparaturen und Wiederherstellung – fachgerecht und nachhaltig.",
+    bullets: ["Drainage & Abdichtung", "Reparatur bestehender Flächen", "Instandsetzung", "Wiederherstellung"],
   },
 ];
 
